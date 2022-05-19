@@ -25,10 +25,7 @@ if(!empty($weight) && !empty($type) &&
     }else{
         http_response_code(503);        
         echo json_encode(array("message" => "Error"));
-    }}else{
-     http_response_code(503);        
-        echo json_encode(array("message" => "Error1"));
-          }
+    }
 }else{
     http_response_code(400);    
     echo json_encode(array("message" => "Error Please Check."));
