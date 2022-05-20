@@ -30,7 +30,7 @@ if(!empty($firstname) && !empty($phone) && !empty($email) &&
     
     $query=pg_query($db,$sql);
         echo $query;
-        die();
+        exit();
     if($query)
     {
        $insert_row = pg_fetch_row($query);
