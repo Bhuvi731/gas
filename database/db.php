@@ -1,7 +1,7 @@
 <?php
    $host        = "host = gashub.amicodevelopment.net";
 
-$port        = "port = 5432";
+$port        = "port = 80";
    $dbname      = "dbname = gashub";
    $credentials = "user =gashubadmin password=123456";
 
