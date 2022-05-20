@@ -18,7 +18,7 @@ $status=$_POST['status'];
 $createdby="1";                                                                                                                                                                                           
 if(!empty($firstname) && !empty($phone) && !empty($email) &&
 !empty($gender) && !empty($dateofbirth) &&
-!empty($status)){ 
+!empty($status)&& !empty($password)){ 
     $sql = "SELECT * FROM users WHERE email='$email'";
     $res = pg_query($db, $sql);
     if(pg_num_rows($res) > 0){
@@ -27,7 +27,6 @@ if(!empty($firstname) && !empty($phone) && !empty($email) &&
       } 
     else{
         echo"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id";
-        exit();
     $query=pg_query($db"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id");
     if($query)
     {
