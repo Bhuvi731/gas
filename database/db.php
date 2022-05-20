@@ -1,5 +1,5 @@
 <?php
-   $host        = "host = localhost";
+   $host        = "host = gashub.amicodevelopment.net";
 
 $port        = "port = 5432";
    $dbname      = "dbname = gashub";
