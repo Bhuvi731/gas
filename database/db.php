@@ -1,9 +1,9 @@
 <?php
-   $host        = "host = gashub.amicodevelopment.net";
+   $host        = "host = localhost";
 
-$port        = "port = 22";
+$port        = "port = 5432";
    $dbname      = "dbname = gashub";
-   $credentials = "username = gashubadmin password=123456";
+   $credentials = "user = gashubadmin password=123456";
 
    $db = pg_connect( "$host $port $dbname $credentials"  );
    if(!$db) {
