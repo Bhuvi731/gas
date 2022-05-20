@@ -26,8 +26,8 @@ if(!empty($firstname) && !empty($phone) && !empty($email) &&
         echo json_encode(array("message" => "email_existed"));
       } 
     else{
-        echo"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id";
-    $query=pg_query($db"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id");
+        
+    $query=pg_query($db,"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id");
     if($query)
     {
        $insert_row = pg_fetch_row($query);
