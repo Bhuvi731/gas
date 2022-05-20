@@ -3,7 +3,7 @@
 
 $port        = "port = 5432";
    $dbname      = "dbname = gashub";
-   $credentials = "user = gashubadmin password=123456";
+   $credentials = "user =admin";
 
    $db = pg_connect( "$host $port $dbname $credentials"  );
    if(!$db) {
