@@ -89,6 +89,12 @@
 </div>
 
 <div class="card-body">
+  <section>
+<div style="margin-left:auto;">
+   <label style="color: #0054A8;" for="">SEARCH :</label>
+<input id="myInput" type="text" placeholder="Search..">
+</div>
+</section>
 <table id="example2" class="table table-bordered table-hover">
 <thead>
 <tr>
@@ -100,10 +106,10 @@
 <th>Action</th>
 </tr>
 </thead>
-<tbody>
+<tbody id="myTable">
 <?php
-// $vendor=pg_query($db,"SELECT weight,status,createdby FROM cylinderweight WHERE status=1");
-$vendor=pg_query($db,"SELECT cylindertype.type,cylinderweight.weight,cylindertype.status,cylindertype.createdby FROM cylinderweight LEFT JOIN cylindertype ON cylindertype.id = cylinderweight.id WHERE cylindertype.status=1");
+
+ $vendor=pg_query($db,"SELECT cylindertype.type,cylinderweight.weight,cylindertype.status,cylindertype.createdby FROM cylinderweight LEFT JOIN cylindertype ON cylindertype.id = cylinderweight.id WHERE cylindertype.status=1");
 $i=1;
 while($row=pg_fetch_assoc($vendor))
 {
@@ -289,8 +295,9 @@ if($row['createdby']==1)
 
 </section>
 
-<script src="plugins/jquery/jquery.min.js"></script>
-
+<!-- <script src="plugins/jquery/jquery.min.js"></script>
+ -->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/jszip/jszip.min.js"></script>
 <script src="plugins/pdfmake/pdfmake.min.js"></script>
@@ -302,19 +309,46 @@ if($row['createdby']==1)
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script src="plugins/toastr/toastr.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-  $(function () {
-    
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
+});
+</script>
+<script>
+ 
+   
+// $('#cname').change(function() {
+
+//      alert("#cname");
+//      if($( "#cname" ).val() == ''){
+//          $('#searchbydate').hide();
+//      }
+// });
+
+
+        //  source: "fetchData.php",
+        //  term:term,
+        // minLength: 0,
+        // select: function( event, ui ) {
+        //   console.log($query);
+        //     event.preventDefault();
+        //     $("#ids").val(ui.item.id);
+        //     $("#cname").val(ui.item.value);
+
+     // var cname = $("#id").val();
+//      //alert(customer);
+//     //  window.location.href = "dashboard.php?pageid=10&billno="+bill;
+
+// }         
+//     });
+ // });
 </script>
 <script>
   
@@ -433,57 +467,50 @@ if($row['createdby']==1)
 
   function editsave(id)
   {
-    var courseid=id;
-    var course = $("#course"+id).val();
-    var status = $("#status"+id).val();
-    var course_credit_hour = $("#course_credit_hour"+id).val();
-    var course_code = $("#course_code"+id).val();
-    if (course == "") {
-      alert("Name must be filled out");
+   var type=$("#type"+id).val();
+    var weight=$("#weight"+id).val();
+    var status=$("#status"+id).val();
+    if (type == "") {
+      alert("Type must be filled out");
       return false;
     }
-    else if(status == "Status")
-    {
+    if (weight == "") {
+      alert("Weight must be filled out");
+      return false;
+    }
+    if (status == "") {
       alert("Status must be filled out");
       return false;
-    }
-    if (course_credit_hour == "") {
-      alert("Hour must be filled out");
-      return false;
-    }
-    if (course_code == "") {
-      alert("Code must be filled out");
-      return false;
-    }else if(course != "" && status !="" && course_credit_hour !=="" && course_code !=="")
+    }else if(type != "" && weight !="" && status !=="")
     {
       $.ajax({
-      type:"GET",
-      url:"mastercourse.php",
+      type:"POST",
+      url:"http://localhost:8080/gash/api/updatecylinder",
       data:
       {
-        "id":courseid,
-        "course":course,
+        "id":id,
+        "type":type,
+        "weight":weight,
         "status":status,
-        "course_credit_hour":course_credit_hour,
-        "course_code":course_code,
       },
       success:function(msg)
       {
         console.log(msg);
-        if(msg=="success")
+        var message=msg['message'];
+        if(message=="success")
         {
-          
-          editsuccess();
-          
-          
-        }else{
-
+           editsuccess();  
+        }
+       
+        else{
+          error();
         }
       }
     })
     }
+    
+    
   }
-
   function editsuccess()
   {
     var Toast = Swal.mixin({
