@@ -7,17 +7,17 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 include_once '../database/db.php';
 
-if(isset($_GET['id']))
+if(isset($_POST['id']))
 {
 
-$id = $_GET['id'];
-$firstname=$_GET['firstname'];
-$lastname=$_GET['lastname'];
-$phone=$_GET['phone'];
-$email=$_GET['email'];
-$gender=$_GET['gender'];
-$dateofbirth=$_GET['dateofbirth'];
-$status=$_GET['status'];
+$id = $_POST['id'];
+$firstname=$_POST['firstname'];
+$lastname=$_POST['lastname'];
+$phone=$_POST['phone'];
+$email=$_POST['email'];
+$gender=$_POST['gender'];
+$dateofbirth=$_POST['dateofbirth'];
+$status=$_POST['status'];
 $createdby="1";                                                                                                                                                                                           
 if(!empty($firstname) && !empty($phone) && !empty($email) &&
 !empty($gender) && !empty($dateofbirth) &&
