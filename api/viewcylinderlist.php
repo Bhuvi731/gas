@@ -9,16 +9,13 @@ include_once '../database/db.php';
 
 $sql=pg_query($db,"SELECT cylindertype.type,cylinderweight.weight,cylindertype.status,cylindertype.createdby FROM cylinderweight LEFT JOIN cylindertype ON cylindertype.id = cylinderweight.id WHERE cylindertype.status=1");
  if($sql){
-        if($sql2=pg_fetch_assoc($sql))
-        {
+      while($sql2=pg_fetch_assoc($sql)){
+
              http_response_code(201);         
-             echo json_encode(array("message" => "Successfull"));
-        }else{
+             echo json_encode($sql2);
+           }
+           }else{
           http_response_code(503);        
         echo json_encode(array("message" => "Error"));
              }
-    }else{
-    http_response_code(400);    
-    echo json_encode(array("message" => "Error Please Check."));
-               }
 ?>
