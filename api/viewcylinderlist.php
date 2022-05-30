@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../database/db.php';
 
 //$sql=pg_query($db,"SELECT * FROM cylinderweight LEFT JOIN cylindertype ON cylindertype.id = cylinderweight.id WHERE cylindertype.status=1");
-$sql=pg_query($db,"SELECT * FROM products where status=1");
+$sql=pg_query($db,"SELECT * FROM products LEFT JOIN cylindertype on cylindertype.id = products.cylindertypeid where status=1");
 
 
  if($sql){
