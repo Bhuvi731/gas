@@ -22,14 +22,16 @@ include_once '../database/db.php';
 //   }
 
 $sql=pg_query($db,"SELECT * FROM products LEFT JOIN  cylindertype on cylindertype.id = products.cylindertypeid left join cylinderweight on cylinderweight.id =products.cylinderweightid left join vendors on vendors.id = products.vendorid where products.status=1");
-
+$my=array();
  if($sql){
    //var_dump($sql); 
-    while($sql2=pg_fetch_array($sql)){
-
+    while($sql2=pg_fetch_assoc($sql)){
+ 
              http_response_code(201);       
-             echo json_encode(array($sql2));
+            
+            $my[]=$sql2;
            }
+           echo json_encode($my);
            }else{
           http_response_code(503);        
         echo json_encode(array("message" => "Error"));
