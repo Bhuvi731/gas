@@ -10,6 +10,6 @@ $port        = "port = 5432";
       echo "Error : Unable to open database\n";
   } 
 else {
-       echo "connected database successfully\n";
+       //echo "connected database successfully\n";
 }
 ?>
