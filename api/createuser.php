@@ -14,7 +14,7 @@ $email=$_POST['email'];
 $password=$_POST['password'];
 $gender=$_POST['gender'];
 $dateofbirth=$_POST['dateofbirth'];
-$status=$_POST['status'];
+$status="1";
 $createdby="1";                                                                                                                                                                                           
 if(!empty($email) &&
 !empty($password) &&
