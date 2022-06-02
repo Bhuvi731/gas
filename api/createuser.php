@@ -16,9 +16,9 @@ $gender=$_POST['gender'];
 $dateofbirth=$_POST['dateofbirth'];
 $status=$_POST['status'];
 $createdby="1";                                                                                                                                                                                           
-if(!empty($firstname) && !empty($phone) && !empty($email) &&
-!empty($gender) && !empty($dateofbirth) &&
-!empty($status)&& !empty($password)){ 
+if(!empty($email) &&
+!empty($password) &&
+!empty($status)){  
     $sql = "SELECT * FROM users WHERE email='$email'";
     $res = pg_query($db, $sql);
     if(pg_num_rows($res) > 0){
