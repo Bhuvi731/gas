@@ -79,6 +79,15 @@
 </div>
 
 </section>
+<br>
+<br>
+<section>
+<div style="margin-left:700px;">
+   <label style="color: #0054A8;" for="">SEARCH :</label>
+<input id="myInput" type="text" placeholder="Search..">
+</div>
+</section>
+
 <section class="content" id="content">
 <div class="container-fluid">
 <div class="row">
@@ -472,12 +481,21 @@ $(document).ready(function(){
     var status=$("#status"+id).val();
     if (type == "") {
       alert("Type must be filled out");
+<<<<<<< Updated upstream
       return false;
     }
     if (weight == "") {
       alert("Weight must be filled out");
       return false;
     }
+=======
+      return false;
+    }
+    if (weight == "") {
+      alert("Weight must be filled out");
+      return false;
+    }
+>>>>>>> Stashed changes
     if (status == "") {
       alert("Status must be filled out");
       return false;
