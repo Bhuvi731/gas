@@ -16,15 +16,9 @@ $gender=$_POST['gender'];
 $dateofbirth=$_POST['dateofbirth'];
 $status="1";
 $createdby="1";                                                                                                                                                                                           
-<<<<<<< Updated upstream
 if(!empty($email) &&
-!empty($password) &&
-!empty($status)){  
-=======
-if(!empty($firstname) && !empty($phone) && !empty($email) &&
-!empty($gender) && !empty($dateofbirth) &&
+!empty($password)&&
 !empty($status)){ 
->>>>>>> Stashed changes
     $sql = "SELECT * FROM users WHERE email='$email'";
     $res = pg_query($db, $sql);
     if(pg_num_rows($res) > 0){
@@ -32,15 +26,10 @@ if(!empty($firstname) && !empty($phone) && !empty($email) &&
         echo json_encode(array("message" => "email_existed"));
       } 
     else{
-<<<<<<< Updated upstream
-       
-    $query=pg_query($db,"INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id");
-=======
         
     $sql = "INSERT INTO users(firstname,lastname,phone,email,gender,dateofbirth,status,createdby,password)VALUES('$firstname','$lastname','$phone','$email','$gender','$dateofbirth','$status','$createdby','$password')RETURNING id";
     
     $query=pg_query($db,$sql);
->>>>>>> Stashed changes
     if($query)
     {
        $insert_row = pg_fetch_row($query);
